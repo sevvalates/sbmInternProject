@@ -1,15 +1,13 @@
 package com.sbmInternProject.InsuranceAgency.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
 
         @Id
-        @GeneratedValue(strategy= GenerationType.AUTO)
+        @SequenceGenerator(name = "user_seq_gen",sequenceName = "user_gen",initialValue = 100,allocationSize = 1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq_gen")
         private Integer id;
 
         private String firstName;
