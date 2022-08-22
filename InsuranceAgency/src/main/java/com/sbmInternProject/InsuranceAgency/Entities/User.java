@@ -6,12 +6,9 @@ import javax.persistence.*;
 public class User {
 
         @Id
-        @SequenceGenerator(name = "user_seq_gen",sequenceName = "user_gen",initialValue = 100,allocationSize = 1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq_gen")
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private Integer id;
-
-        private String firstName;
-        private String lastName;
+        private String userName;
         private String email;
         private String password;
 
@@ -25,20 +22,12 @@ public class User {
                 this.id = id;
         }
 
-        public String getFirstName() {
-                return firstName;
+        public String getUserName() {
+                return userName;
         }
 
-        public void setFirstName(String firstName) {
-                this.firstName = firstName;
-        }
-
-        public String getLastName() {
-                return lastName;
-        }
-
-        public void setLastName(String lastName) {
-                this.lastName = lastName;
+        public void setUserName(String userName) {
+                this.userName = userName;
         }
 
         public String getEmail() {
@@ -61,8 +50,7 @@ public class User {
         public String toString() {
                 return "User{" +
                         "id=" + id +
-                        ", firstName='" + firstName + '\'' +
-                        ", lastName='" + lastName + '\'' +
+                        ", user name='" + userName + '\'' +
                         ", email='" + email + '\'' +
                         ", password='" + password + '\'' +
                         '}';
