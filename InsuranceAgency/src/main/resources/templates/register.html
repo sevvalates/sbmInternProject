@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>user registration</title>
+</head>
+<body>
+    <div align="center">
+        <h1>User Registration</h1>
+        <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+            <p>Name: <input type="text" th:field="*{name}" /></p>
+            <p>Surname: <input type="text" th:field="*{surname}" /></p>
+            <p>Email: <input type="text" th:field="*{email}" /></p>
+            <p>Identity Number: <input type="text" th:field="*{identityNumber}" /></p>
+            <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+</body>
+</html>

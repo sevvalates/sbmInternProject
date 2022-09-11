@@ -3,31 +3,75 @@ package com.sbmInternProject.InsuranceAgency.Entities;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name = "users")
 public class User {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private Integer id;
-        private String userName;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id", nullable = false, updatable = false)
+        private long id;
+        @Column(name = "name", nullable = false)
+        private String name;
+        @Column(name = "surname", nullable = false)
+        private String surname;
+        @Column(name = "email", nullable = false)
         private String email;
-        private String password;
 
-        public User() {}
+        @Column(name = "identity_number", nullable = false, unique = true)
+        private long identityNumber;
+        @Column(name = "phone_number", nullable = false)
+        private long phoneNumber;
 
-        public Integer getId() {
+
+        public User() {
+        }
+
+        public User(String name, String surname, long identityNumber, long phoneNumber, String email) {
+                this.name = name;
+                this.surname = surname;
+                this.identityNumber = identityNumber;
+                this.phoneNumber = phoneNumber;
+                this.email = email;
+        }
+
+        public long getId() {
                 return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(long id) {
                 this.id = id;
         }
 
-        public String getUserName() {
-                return userName;
+        public long getIdentityNumber() {
+                return identityNumber;
         }
 
-        public void setUserName(String userName) {
-                this.userName = userName;
+        public void setIdentityNumber(long identityNumber) {
+                this.identityNumber = identityNumber;
+        }
+
+        public long getPhoneNumber() {
+                return phoneNumber;
+        }
+
+        public void setPhoneNumber(long phoneNumber) {
+                this.phoneNumber = phoneNumber;
+        }
+
+        public String getName() {
+                return name;
+        }
+
+        public void setName(String name) {
+                this.name = name;
+        }
+
+        public String getSurname() {
+                return surname;
+        }
+
+        public void setSurname(String surname) {
+                this.surname = surname;
         }
 
         public String getEmail() {
@@ -38,21 +82,15 @@ public class User {
                 this.email = email;
         }
 
-        public String getPassword() {
-                return password;
-        }
-
-        public void setPassword(String password) {
-                this.password = password;
-        }
-
         @Override
         public String toString() {
                 return "User{" +
                         "id=" + id +
-                        ", user name='" + userName + '\'' +
+                        ", name='" + name + '\'' +
+                        ", surname='" + surname + '\'' +
                         ", email='" + email + '\'' +
-                        ", password='" + password + '\'' +
+                        ", identityNumber=" + identityNumber +
+                        ", phoneNumber=" + phoneNumber +
                         '}';
         }
 }

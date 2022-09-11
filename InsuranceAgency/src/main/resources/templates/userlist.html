@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>user list</title>
+</head>
+<body>
+    <table>
+        <h3>User List</h3>
+        <tr>
+            <th>ID </th>
+            <th>Name </th>
+            <th>Surname </th>
+            <th>Email </th>
+            <th>Identity Number </th>
+            <th>Phone Number </th>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td class="align-middle" th:text="${userStat.count}"></td>
+            <td class="align-middle" th:text="${user.name}"></td>
+            <td class="align-middle" th:text="${user.surname}"></td>
+            <td class="align-middle" th:text="${user.email}"></td>
+            <td class="align-middle" th:text="${user.identityNumber}"></td>
+            <td class="align-middle" th:text="${user.phoneNumber}"></td>
+        </tr>
+    </table>
+</body>
+</html>
