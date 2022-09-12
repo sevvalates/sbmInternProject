@@ -2,31 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>user list</title>
+    <title>User List</title>
 </head>
 <body>
-    <table>
-        <h3>User List</h3>
+<div class="container">
+
+    <h3>User List</h3>
+
+    <hr/>
+    <a th:href="@{/register}" class="btn btn-primary">Register User</a>
+    <br/><br/>
+    <table class="table table-bordered table-striped">
+
+        <thead>
         <tr>
-            <th>ID </th>
             <th>Name </th>
             <th>Surname </th>
             <th>Email </th>
             <th>Identity Number </th>
             <th>Phone Number </th>
+            <th> Actions </th>
         </tr>
-        <tr th:each="user : ${userList}">
-            <td class="align-middle" th:text="${userStat.count}"></td>
-            <td class="align-middle" th:text="${user.name}"></td>
-            <td class="align-middle" th:text="${user.surname}"></td>
-            <td class="align-middle" th:text="${user.email}"></td>
-            <td class="align-middle" th:text="${user.identityNumber}"></td>
-            <td class="align-middle" th:text="${user.phoneNumber}"></td>
-        </tr>
-    </table>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${userList}">
+            <td th:text="${user.name}" />
+            <td th:text="${user.surname}" />
+            <td th:text="${user.email}" />
+            <td th:text="${user.identityNumber}" />
+            <td th:text="${user.phoneNumber}" />
+            <td>
+                <!-- <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info">Update</a> -->
+              <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
+              <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
+          </td>
+      </tr>
+      </tbody>
+
+  </table>
+</div>
+
 </body>
 </html>

@@ -57,4 +57,31 @@ public class UserController {
         model.addAttribute("userList", userService.getUsers());
         return "userlist";
     }
+    @RequestMapping(value = "/userlist/{id}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable Long id) {
+            userService.deleteUserById(id);
+            return "redirect:/userlist";
+    }
+
+    @RequestMapping(value = "/userlist/edit/{id}", method = RequestMethod.GET)
+    public String editUserForm(@PathVariable Long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "edit_user";
+    }
+
+    @RequestMapping(value = "/userlist/{id}", method = RequestMethod.POST)
+    public String updateUser(@PathVariable Long id, @ModelAttribute("ıser") User user,Model model) {
+
+        // get usser from database by id
+        User existingUser = userService.getUserById(id);
+        existingUser.setId(id);
+        existingUser.setName(user.getName());
+        existingUser.setSurname(user.getSurname());
+        existingUser.setPhoneNumber(user.getPhoneNumber());
+        existingUser.setIdentityNumber(user.getIdentityNumber());
+
+        // save updated student object
+        userService.updateUser(existingUser);
+        return "redirect:/userlist";
+    }
 }
