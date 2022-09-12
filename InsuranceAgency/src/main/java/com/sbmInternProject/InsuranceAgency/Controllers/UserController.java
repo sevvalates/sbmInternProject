@@ -50,7 +50,7 @@ public class UserController {
     public String handleRegisterForm(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
         userService.addUser(user);
-        return "result";
+        return "redirect:/userlist";
     }
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     public String getUserListPage(Model model) {

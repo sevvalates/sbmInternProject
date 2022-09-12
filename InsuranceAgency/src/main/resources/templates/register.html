@@ -2,23 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>user registration</title>
+    <title>Insurance Agency</title>
 </head>
 <body>
-<div align="center">
-    <h1>User Registration</h1>
-    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>Surname: <input type="text" th:field="*{surname}" /></p>
-        <p>Email: <input type="text" th:field="*{email}" /></p>
-        <p>Identity Number: <input type="text" th:field="*{identityNumber}" /></p>
-        <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand
+    <a class="navbar-brand" href="#">Student Management System</a>-->
+
+    <!-- Toggler/collapsibe Button
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/userlist}">Insurance Agency</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Register New User </h1>
+            <div class = "card-body">
+                <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+                    <div class ="form-group">
+                        <label> User Name </label>
+                        <input
+                                type = "text"
+                                name = "name"
+                                th:field = "*{name}"
+                                class = "form-control"
+                                placeholder="Enter User Name"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> User Surname </label>
+                        <input
+                                type = "text"
+                                name = "surname"
+                                th:field = "*{surname}"
+                                class = "form-control"
+                                placeholder="Enter User Surname"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> User Email </label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field = "*{email}"
+                                class = "form-control"
+                                placeholder="Enter User Email"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> User Identity Number </label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field = "*{identityNumber}"
+                                class = "form-control"
+                                placeholder="Enter User Identity Number"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> User Phone Number </label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                th:field = "*{phoneNumber}"
+                                class = "form-control"
+                                placeholder="Enter User Phone Number"
+                        />
+                    </div>
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
