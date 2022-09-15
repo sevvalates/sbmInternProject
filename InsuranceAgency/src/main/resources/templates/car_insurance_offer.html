@@ -35,6 +35,9 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/carInsurance}">Car Insurance</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -88,28 +91,31 @@
     </td>
     -->
     </tbody>
-
   </table>
 
   <table class="table table-bordered table-striped">
-    <h4>Offer: </h4>
-
+    <h4>Car Insurance Offer: </h4>
+    <thead>
+    <tr>
+      <th>Offer Price</th>
+      <th>Offer Date </th>
+      <th>Approved Date </th>
+    </tr>
+    </thead>
     <tbody>
-    <td th:text="${car.price}" /> <!-- offer hesaplanacak o yazılacak -->
+      <td> <span th:text="${car.getOffer().offerPrice}" /> TL </td>
+      <td th:text="${car.getOffer().getOfferDate()}" />
+      <td th:text="${car.getOffer().getApprovedDate()}" />
 
-    <td>
-         <a class = "btn btn-primary" >Approve</a>  <!-- approve icin poliçeler sayfa yazılacak o eklenecek -->
-         <a  class="btn btn-danger ml-2">Cancel</a>
-    </td>
+      <td>
+        <a th:href="@{/offerlist/approveTrue/{id} (id=${car.getOffer().id})}" class = "btn btn-primary" >Approve</a>
+        <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
+      </td>
+
     </tbody>
 
   </table>
+
 </div>
-<!--
-  <h3>Information of the car to be insured: </h3>
-
-
-  -->
-
 </body>
 </html>

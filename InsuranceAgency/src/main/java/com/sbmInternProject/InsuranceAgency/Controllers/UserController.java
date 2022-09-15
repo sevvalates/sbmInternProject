@@ -48,9 +48,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userlist/{id}", method = RequestMethod.POST)
-    public String updateUser(@PathVariable Long id, @ModelAttribute("ıser") User user,Model model) {
+    public String updateUser(@PathVariable Long id, @ModelAttribute("user") User user,Model model) {
 
-        // get usser from database by id
+        // get user from database by id
         User existingUser = userService.getUserById(id);
         existingUser.setId(id);
         existingUser.setName(user.getName());

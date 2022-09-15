@@ -27,6 +27,9 @@ public class Car {
     @Column(name = "price", nullable = false)
     private long price;
 
+    @OneToOne
+    private Offer offer;
+
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
     private User user;
