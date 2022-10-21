@@ -36,4 +36,9 @@ public class OfferServiceImpl implements OfferService {
     public Offer getOfferById(Long id) {
         return offerRepository.findById(id).get();
     }
+
+   /* @Override
+    public Offer getOfferListById(Long id) {
+        return offerRepository.findAllByOneId(id);
+    }*/
 }

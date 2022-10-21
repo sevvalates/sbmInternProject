@@ -38,6 +38,12 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
       </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/add_city}">Add City</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/citylist}">City List</a>
+        </li>
     </ul>
   </div>
 </nav>
@@ -51,8 +57,9 @@
 
     <thead>
     <tr>
-      <!-- <th>Customer Full Name </th> -->
-       <th>Offer Date </th>
+       <th>Customer Full Name </th>
+        <th>Insurance Type </th>
+        <th>Offer Date </th>
        <th>Approved Date </th>
        <th>Offer Price </th>
        <th>Status </th>
@@ -60,8 +67,9 @@
      </thead>
      <tbody>
      <tr th:each="offer: ${offerList}">
-       <!-- <td th:text="${offer.car.user.getName() }" /> -->
-      <td th:text="${offer.getOfferDate()}" />
+         <td th:text="${offer.car.getUser().getName() + ' ' + offer.car.getUser().getSurname()}" />
+         <td> Car Insurance </td>
+         <td th:text="${offer.getOfferDate()}" />
       <td th:text="${offer.getApprovedDate()}" />
       <td> <span th:text="${offer.offerPrice}" /> TL </td>
       <td>

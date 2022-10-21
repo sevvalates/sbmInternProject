@@ -25,15 +25,6 @@ public class OfferController {
         model.addAttribute("offerList", offerService.getOffers());
         return "offerlist";
     }
-/*
-    @RequestMapping(value = "/offerlist/{id}", method = RequestMethod.GET)
-    public String editUserForm(@PathVariable Long id, Model model) {
-        model.addAttribute("offer", offerService.getOfferById(id));
-        return "edit_user";
-    }
-
- */
-
 
     @RequestMapping(value = "/offerlist/approveTrue/{id}", method = RequestMethod.GET)
     public String getApproved(@PathVariable Long id) {
@@ -46,6 +37,12 @@ public class OfferController {
 
         return "redirect:/offerlist";
     }
+
+ /*   @RequestMapping(value = "/offerlist/{id}", method = RequestMethod.GET)
+    public String getPersonalOfferList(@PathVariable Long id , Model model) {
+        model.addAttribute("offerList", offerService.getOfferListById(id));
+        return "personal_offerlist";
+    }*/
 
 
 }

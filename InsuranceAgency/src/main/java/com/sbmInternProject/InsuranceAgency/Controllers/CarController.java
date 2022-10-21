@@ -3,6 +3,7 @@ package com.sbmInternProject.InsuranceAgency.Controllers;
 import com.sbmInternProject.InsuranceAgency.Entities.Car;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Services.CarService;
+import com.sbmInternProject.InsuranceAgency.Services.CityService;
 import com.sbmInternProject.InsuranceAgency.Services.OfferService;
 import com.sbmInternProject.InsuranceAgency.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,21 @@ public class CarController {
     @Autowired
     private final OfferService offerService;
 
-    public CarController(CarService carService, UserService userService, OfferService offerService) {
+    @Autowired
+    private final CityService cityService;
+
+    public CarController(CarService carService, UserService userService, OfferService offerService, CityService cityService) {
         this.carService = carService;
         this.userService = userService;
         this.offerService = offerService;
+        this.cityService = cityService;
     }
 
     @RequestMapping(value = "/carInsurance", method = RequestMethod.GET)
     public String getCarInsurancePage(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("userlist", userService.getUsers());
+        model.addAttribute("citylist", cityService.getCities());
         return "car_insurance";
     }
 /*
@@ -55,11 +61,10 @@ public class CarController {
         Offer offer=new Offer();
         offer.getOfferPrice(car);
         offer.setOfferDate(LocalDate.now());
+       //offer.setCar(car);
         car.setOffer(offer);
 
-        //approved true ise eklesin degilse eklemesin listeye????yapmali mıyım
         offerService.addOffer(offer);
-
         carService.addCar(car);
 
         model.addAttribute("car", car);

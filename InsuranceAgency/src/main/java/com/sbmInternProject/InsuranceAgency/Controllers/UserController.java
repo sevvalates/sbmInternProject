@@ -1,17 +1,19 @@
 package com.sbmInternProject.InsuranceAgency.Controllers;
 
+import com.sbmInternProject.InsuranceAgency.Entities.City;
 import com.sbmInternProject.InsuranceAgency.Entities.User;
+import com.sbmInternProject.InsuranceAgency.Services.CityService;
 import com.sbmInternProject.InsuranceAgency.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
 
 @Controller
 public class UserController {
-    private final UserService userService;
     @Autowired
+    private final UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -26,9 +28,13 @@ public class UserController {
     //@PostMapping("/greeting")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String handleRegisterForm(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", user);
-        userService.addUser(user);
-        return "redirect:/userlist";
+        try{
+            model.addAttribute("user", user);
+            userService.addUser(user);
+            return "redirect:/userlist";
+        }catch (Exception exception){
+            return "register";
+        }
     }
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     public String getUserListPage(Model model) {

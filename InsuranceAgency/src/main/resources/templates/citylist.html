@@ -51,41 +51,31 @@
 
 <div class="container">
 
-    <h3>User List</h3>
+    <h3>City List</h3>
 
     <hr/>
-    <a th:href="@{/register}" class="btn btn-primary">Register User</a>
+    <a th:href="@{/add_city}" class="btn btn-primary">Add City</a>
     <br/><br/>
     <table class="table table-bordered table-striped">
 
         <thead>
         <tr>
-            <th>Name </th>
-            <th>Surname </th>
-            <th>Birth Year</th>
-            <th>Email </th>
-            <th>Identity Number </th>
-            <th>Phone Number </th>
-            <th> Actions </th>
+            <th>City Name </th>
+            <th>Value </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${userList}">
-            <td th:text="${user.name}" />
-            <td th:text="${user.surname}" />
-            <td th:text="${user.birthYear}"/>
-            <td th:text="${user.email}" />
-            <td th:text="${user.identityNumber}" />
-            <td th:text="${user.phoneNumber}" />
+        <tr th:each="city: ${citylist}">
+            <td th:text="${city.cityName}" />
+            <td th:text="${city.cityValue}" />
 
             <td>
-              <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
-              <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
+                <a th:href="@{/citylist/{id}(id=${city.id})}" class="btn btn-danger ml-2">Delete</a>
             </td>
         </tr>
-      </tbody>
+        </tbody>
 
-  </table>
+    </table>
 </div>
 
 </body>

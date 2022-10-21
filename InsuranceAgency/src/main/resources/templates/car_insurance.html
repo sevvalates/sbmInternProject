@@ -36,6 +36,12 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/add_city}">Add City</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/citylist}">City List</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -59,6 +65,19 @@
                         <br>
                         <label> Not registered yet? </label>
                         <a th:href = "@{/register}" class = "btn btn-success">Register Now</a>
+                    </div>
+
+                    <div class ="form-group">
+                        <label> User City </label>
+                        <select th:field="*{city}">
+                            <option value=""> select user city </option>
+                            <option th:each="city : ${citylist}"
+                                    th:value="${city.id}"
+                                    th:text="${city.cityName}"/>
+                        </select>
+                        <br>
+                        <label> No City Data? </label>
+                        <a th:href = "@{/add_city}" class = "btn btn-success">Add City</a>
                     </div>
 
                     <div class ="form-group">
@@ -115,6 +134,29 @@
                                 placeholder="Enter Price "
                         />
                     </div>
+<!--
+                    <div class ="form-group">
+                        <label> Insurance Start Date </label>
+                        <input
+                                type = "date"
+                                name = "startDate"
+                                th:field = "*{offer.startDate}"
+                                class = "form-control"
+                                placeholder="Enter Price "
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Insurance End Date </label>
+                        <input
+                                type = "date"
+                                name = "endDate"
+                                th:field = "*{offer.endDate}"
+                                class = "form-control"
+                                placeholder="Enter Price "
+                        />
+                    </div>
+-->
 
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">

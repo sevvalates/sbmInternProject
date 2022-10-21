@@ -1,9 +1,12 @@
 package com.sbmInternProject.InsuranceAgency.Entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @ToString
 @NoArgsConstructor
@@ -19,30 +22,36 @@ public class Offer {
 
     @Column(name = "offer_date")
     public LocalDate offerDate;
-
     @Column(name = "approved_date")
     public LocalDate approvedDate;
-
     @Column(name = "offer_price")
     public long offerPrice;
-
     @Column(name = "approved")
     public boolean approved=false;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "start_date")
+    public LocalDate startDate;
 
-    @OneToOne
-    @JoinColumn(name = "car_id")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "end_date")
+    public LocalDate endDate;
+
+    //@OneToOne
+    //@JoinColumn(name = "car_id")
+    @OneToOne(mappedBy = "offer", cascade = CascadeType.REMOVE)
     public Car car;
 
 
+    private static int currentYear=LocalDate.now().getYear();
+
+    //Setters & Getters
     public Car getCar() {
         return car;
     }
+
     public void setCar(Car car) {
         this.car = car;
     }
-
-    private static int currentYear=2022;
-
 
     public long getId() {
         return id;
@@ -68,13 +77,17 @@ public class Offer {
         this.approvedDate = approvedDate;
     }
 
-    public long getOfferPrice(Car car) {
-        offerPrice=(currentYear-car.getYearModel())*5 + (car.getPrice()/100);
-        return offerPrice;
-    }
-
     public long getOfferPrice() {
         return offerPrice;
+    }
+    public long getOfferPrice(Car car) {
+        offerPrice=(currentYear-car.getYearModel())*car.getCity().getCityValue() + (car.getPrice()/100);
+        //long daysBetween=DAYS.between(startDate,endDate);
+        //offerPrice=(offerPrice/30)*daysBetween;
+        return offerPrice;
+    }
+    public void setOfferPrice(long offerPrice) {
+        this.offerPrice = offerPrice;
     }
 
     public boolean isApproved() {
@@ -85,15 +98,27 @@ public class Offer {
         this.approved = approved;
     }
 
-    public void setOfferPrice(long offerPrice) {
-        this.offerPrice = offerPrice;
-    }
-
     public static int getCurrentYear() {
         return currentYear;
     }
 
     public static void setCurrentYear(int currentYear) {
         Offer.currentYear = currentYear;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

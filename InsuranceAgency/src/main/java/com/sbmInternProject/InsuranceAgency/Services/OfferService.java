@@ -12,4 +12,6 @@ public interface OfferService {
     Offer updateOffer(Offer offer);
 
     Offer getOfferById(Long id);
+
+    //Offer getOfferListById(Long id);
 }

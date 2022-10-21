@@ -37,6 +37,12 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/add_city}">Add City</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/citylist}">City List</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -73,6 +79,17 @@
           </div>
 
           <div class ="form-group">
+            <label> User Birth Year </label>
+            <input
+                    type = "text"
+                    name = "birthYear"
+                    th:field = "*{birthYear}"
+                    class = "form-control"
+                    placeholder="Enter User Birth Year"
+            />
+          </div>
+
+          <div class ="form-group">
             <label> User Email </label>
             <input
                     type = "text"
@@ -87,7 +104,7 @@
             <label> User Identity Number </label>
             <input
                     type = "text"
-                    name = "email"
+                    name = "identityNumber"
                     th:field = "*{identityNumber}"
                     class = "form-control"
                     placeholder="Enter User Identity Number"
@@ -98,7 +115,7 @@
             <label> User Phone Number </label>
             <input
                     type = "text"
-                    name = "email"
+                    name = "phoneNumber"
                     th:field = "*{phoneNumber}"
                     class = "form-control"
                     placeholder="Enter User Phone Number"
