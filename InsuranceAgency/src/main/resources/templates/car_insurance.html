@@ -42,6 +42,12 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/citylist}">City List</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/add_car_brand}">Add Car Brand</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/carbrandlist}">Car Brand List</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -81,14 +87,16 @@
                     </div>
 
                     <div class ="form-group">
-                        <label> Brand  </label>
-                        <input
-                                type = "text"
-                                name = "brand"
-                                th:field = "*{brand}"
-                                class = "form-control"
-                                placeholder="Enter Brand of the Car"
-                        />
+                        <label> Car Brand </label>
+                        <select th:field="*{carBrand}">
+                            <option value=""> select car brand </option>
+                            <option th:each="carBrand : ${carbrandlist}"
+                                    th:value="${carBrand.id}"
+                                    th:text="${carBrand.brandName}"/>
+                        </select>
+                        <br>
+                        <label> No Car Brand Data? </label>
+                        <a th:href = "@{/add_car_brand}" class = "btn btn-success">Add Car Brand</a>
                     </div>
 
                     <div class ="form-group">
@@ -134,7 +142,7 @@
                                 placeholder="Enter Price "
                         />
                     </div>
-<!--
+
                     <div class ="form-group">
                         <label> Insurance Start Date </label>
                         <input
@@ -142,21 +150,9 @@
                                 name = "startDate"
                                 th:field = "*{offer.startDate}"
                                 class = "form-control"
-                                placeholder="Enter Price "
                         />
                     </div>
 
-                    <div class ="form-group">
-                        <label> Insurance End Date </label>
-                        <input
-                                type = "date"
-                                name = "endDate"
-                                th:field = "*{offer.endDate}"
-                                class = "form-control"
-                                placeholder="Enter Price "
-                        />
-                    </div>
--->
 
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">

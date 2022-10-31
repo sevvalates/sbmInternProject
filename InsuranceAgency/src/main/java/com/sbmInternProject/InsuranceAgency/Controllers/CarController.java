@@ -2,10 +2,7 @@ package com.sbmInternProject.InsuranceAgency.Controllers;
 
 import com.sbmInternProject.InsuranceAgency.Entities.Car;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
-import com.sbmInternProject.InsuranceAgency.Services.CarService;
-import com.sbmInternProject.InsuranceAgency.Services.CityService;
-import com.sbmInternProject.InsuranceAgency.Services.OfferService;
-import com.sbmInternProject.InsuranceAgency.Services.UserService;
+import com.sbmInternProject.InsuranceAgency.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +25,15 @@ public class CarController {
     @Autowired
     private final CityService cityService;
 
-    public CarController(CarService carService, UserService userService, OfferService offerService, CityService cityService) {
+    @Autowired
+    private final CarBrandService carBrandService;
+
+    public CarController(CarService carService, UserService userService, OfferService offerService, CityService cityService, CarBrandService carBrandService) {
         this.carService = carService;
         this.userService = userService;
         this.offerService = offerService;
         this.cityService = cityService;
+        this.carBrandService = carBrandService;
     }
 
     @RequestMapping(value = "/carInsurance", method = RequestMethod.GET)
@@ -40,6 +41,7 @@ public class CarController {
         model.addAttribute("car", new Car());
         model.addAttribute("userlist", userService.getUsers());
         model.addAttribute("citylist", cityService.getCities());
+        model.addAttribute("carbrandlist", carBrandService.getCarBrands());
         return "car_insurance";
     }
 /*

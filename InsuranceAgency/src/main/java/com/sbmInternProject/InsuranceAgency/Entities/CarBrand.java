@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "carbrand")
+@Table(name = "carBrand")
 public class CarBrand {
 
     @Id
@@ -26,6 +26,6 @@ public class CarBrand {
     @Column(name = "brand_value", nullable = false)
     private int brandValue;
 
-   /* @OneToMany(mappedBy = "carbrand", cascade = CascadeType.REMOVE)
-    private List<Car> car;*/
+    @OneToMany(mappedBy = "carBrand", cascade = CascadeType.REMOVE)
+    private List<Car> car;
 }

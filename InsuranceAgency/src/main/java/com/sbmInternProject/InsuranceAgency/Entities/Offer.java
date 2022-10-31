@@ -2,11 +2,9 @@ package com.sbmInternProject.InsuranceAgency.Entities;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import java.time.LocalDate;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 @ToString
 @NoArgsConstructor
@@ -19,7 +17,6 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
-
     @Column(name = "offer_date")
     public LocalDate offerDate;
     @Column(name = "approved_date")
@@ -28,19 +25,15 @@ public class Offer {
     public long offerPrice;
     @Column(name = "approved")
     public boolean approved=false;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future
     @Column(name = "start_date")
     public LocalDate startDate;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Column(name = "end_date")
-    public LocalDate endDate;
 
-    //@OneToOne
-    //@JoinColumn(name = "car_id")
     @OneToOne(mappedBy = "offer", cascade = CascadeType.REMOVE)
     public Car car;
-
 
     private static int currentYear=LocalDate.now().getYear();
 
@@ -81,7 +74,10 @@ public class Offer {
         return offerPrice;
     }
     public long getOfferPrice(Car car) {
-        offerPrice=(currentYear-car.getYearModel())*car.getCity().getCityValue() + (car.getPrice()/100);
+        offerPrice=(currentYear-car.getYearModel())
+                     *car.getCity().getCityValue()
+                     *car.getCarBrand().getBrandValue()
+                    + (car.getPrice()/100);
         //long daysBetween=DAYS.between(startDate,endDate);
         //offerPrice=(offerPrice/30)*daysBetween;
         return offerPrice;
@@ -114,11 +110,4 @@ public class Offer {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
 }

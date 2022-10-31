@@ -18,9 +18,6 @@ public class Car {
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "brand", nullable = false)
-    private String brand;
-
     @Column(name = "plate_number", nullable = false)
     private String plateNumber; //plaka
 
@@ -43,12 +40,11 @@ public class Car {
     @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = false)
     private Offer offer;
 
-   /* @ManyToOne
-    @JoinColumn(name = "carbrand_id",referencedColumnName = "id", nullable = false)
-    private CarBrand carBrand;*/
-
     @ManyToOne
     @JoinColumn(name = "city_id",referencedColumnName = "id", nullable = false)
     private City city;
 
+    @ManyToOne
+    @JoinColumn(name = "carBrand_id",referencedColumnName = "id", nullable = false)
+    private CarBrand carBrand;
 }

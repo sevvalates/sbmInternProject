@@ -44,6 +44,12 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/citylist}">City List</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/add_car_brand}">Add Car Brand</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/carbrandlist}">Car Brand List</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -77,7 +83,6 @@
     <h4>Car Information: </h4>
     <thead>
     <tr>
-      <th>Brand </th>
       <th>Plate Number </th>
       <th>License Serial Number </th>
       <th>Year Model</th>
@@ -85,7 +90,6 @@
     </tr>
     </thead>
     <tbody>
-    <td th:text="${car.brand}" />
     <td th:text="${car.plateNumber}" />
     <td th:text="${car.licenseSerialNumber}" />
     <td th:text="${car.yearModel}" />
@@ -112,7 +116,6 @@
       <td> <span th:text="${car.getOffer().offerPrice}" /> TL </td>
       <td th:text="${car.getOffer().getOfferDate()}" />
       <td th:text="${car.getOffer().getApprovedDate()}" />
-
       <td>
         <a th:href="@{/offerlist/approveTrue/{id} (id=${car.getOffer().id})}" class = "btn btn-primary" >Approve</a>
         <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
