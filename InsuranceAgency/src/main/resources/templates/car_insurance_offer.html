@@ -110,6 +110,8 @@
       <th>Offer Price</th>
       <th>Offer Date </th>
       <th>Approved Date </th>
+      <th>City </th>
+
     </tr>
     </thead>
     <tbody>
@@ -120,6 +122,7 @@
         <a th:href="@{/offerlist/approveTrue/{id} (id=${car.getOffer().id})}" class = "btn btn-primary" >Approve</a>
         <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
       </td>
+      <td th:text="${car.getCity().getCityName()}" />
 
     </tbody>
 

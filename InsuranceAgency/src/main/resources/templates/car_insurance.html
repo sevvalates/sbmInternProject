@@ -108,6 +108,7 @@
                                 class = "form-control"
                                 placeholder="Enter Plate Number"
                         />
+                        <p th:errors="*{plateNumber}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -130,6 +131,7 @@
                                 class = "form-control"
                                 placeholder="Enter Year Model "
                         />
+                        <p th:errors="*{yearModel}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -141,6 +143,7 @@
                                 class = "form-control"
                                 placeholder="Enter Price "
                         />
+                        <p th:errors="*{price}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -151,6 +154,8 @@
                                 th:field = "*{offer.startDate}"
                                 class = "form-control"
                         />
+                        <p th:errors="*{offer.startDate}" class="text-danger"></p>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
 
 

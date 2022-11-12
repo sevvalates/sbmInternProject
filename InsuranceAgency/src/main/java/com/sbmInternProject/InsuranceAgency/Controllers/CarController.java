@@ -1,15 +1,18 @@
 package com.sbmInternProject.InsuranceAgency.Controllers;
 
 import com.sbmInternProject.InsuranceAgency.Entities.Car;
+import com.sbmInternProject.InsuranceAgency.Entities.City;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
@@ -58,15 +61,30 @@ public class CarController {
     }
 */
     @RequestMapping(value = "/carInsurance", method = RequestMethod.POST)
-    public String handleCarInsuranceForm(@ModelAttribute Car car, Model model) {
+    public String handleCarInsuranceForm(@ModelAttribute @Valid Car car, BindingResult result, Model model) {
+
+        if (result.hasErrors() || car.getOffer().getStartDate()!=null ){
+
+            if(car.getOffer().getStartDate()!=null){
+                if( car.getOffer().getStartDate().isBefore( LocalDate.now() ) ){
+                    model.addAttribute("errorMessage", "Select a valid date.");
+                }
+            }
+            model.addAttribute("userlist", userService.getUsers());
+            model.addAttribute("citylist", cityService.getCities());
+            model.addAttribute("carbrandlist", carBrandService.getCarBrands());
+            return "car_insurance";
+        }
 
         Offer offer=new Offer();
         offer.getOfferPrice(car);
         offer.setOfferDate(LocalDate.now());
-       //offer.setCar(car);
+        offer.setStartDate(car.getOffer().getStartDate());
         car.setOffer(offer);
+        //if(car.getOffer().getStartDate().isBefore(LocalDate.now()))
 
         offerService.addOffer(offer);
+        //car.setCity(city);
         carService.addCar(car);
 
         model.addAttribute("car", car);

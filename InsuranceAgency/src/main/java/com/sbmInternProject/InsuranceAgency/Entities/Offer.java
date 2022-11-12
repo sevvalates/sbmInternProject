@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @ToString
@@ -27,7 +28,7 @@ public class Offer {
     public boolean approved=false;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future
+    @NotNull(message = "cannot be null")
     @Column(name = "start_date")
     public LocalDate startDate;
 

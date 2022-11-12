@@ -68,6 +68,7 @@
                                 class = "form-control"
                                 placeholder="Enter User Name"
                         />
+                        <p th:errors="*{name}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -79,6 +80,7 @@
                                 class = "form-control"
                                 placeholder="Enter User Surname"
                         />
+                        <p th:errors="*{surname}" class="text-danger"></p>
                     </div>
                     <div class ="form-group">
                         <label> User Birth Year </label>
@@ -89,6 +91,8 @@
                                 class = "form-control"
                                 placeholder="Enter User Birth Year"
                         />
+                        <p th:errors="*{birthYear}" class="text-danger"></p>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -100,6 +104,7 @@
                                 class = "form-control"
                                 placeholder="Enter User Email"
                         />
+                        <p th:errors="*{email}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -111,6 +116,7 @@
                                 class = "form-control"
                                 placeholder="Enter User Identity Number"
                         />
+                        <p th:errors="*{identityNumber}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -122,6 +128,7 @@
                                 class = "form-control"
                                 placeholder="Enter User Phone Number"
                         />
+                        <p th:errors="*{phoneNumber}" class="text-danger"></p>
                     </div>
 
                     <div class = "box-footer">

@@ -56,7 +56,7 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Add City Data </h1>
+            <h1 class = "text-center"> Add Car Brand Data </h1>
             <div class = "card-body">
                 <form action="#" th:action="@{/add_car_brand}" th:object="${carBrand}" method="post">
                     <div class ="form-group">
@@ -79,6 +79,7 @@
                                 class = "form-control"
                                 placeholder="Enter Car Brand Value"
                         />
+                        <p th:errors="*{brandValue}" class="text-danger"></p>
                     </div>
 
                     <div class = "box-footer">

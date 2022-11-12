@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -24,9 +26,10 @@ public class City {
     @Column(name = "city_name", nullable = false)
     private String cityName;
 
+    @Range(min = 1, max = 10 , message = "Value must be in range 1-10.")
     @Column(name = "city_value", nullable = false)
     private int cityValue;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Car> car;
 }

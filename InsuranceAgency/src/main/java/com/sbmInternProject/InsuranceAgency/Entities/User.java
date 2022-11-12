@@ -1,10 +1,9 @@
 package com.sbmInternProject.InsuranceAgency.Entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
@@ -28,15 +27,23 @@ public class User {
         @Column(name = "surname", nullable = false)
         private String surname;
 
-        @Max(value = 2004 , message = "User age must be at least 18.")
-        @Min(value= 1922 , message = "User must be younger than 100.")
+        @NotNull(message = "User birth year cannot be null.")
+        //@Max(value = LocalDate.now().getYear()-18)
+        //@Max(value=2022-18 , message = "User must be older than 18.")
+        @Min(value=1920 , message = "User must be younger.")
         @Column(name = "birth_year",nullable = false)
         private long birthYear;
 
+        //@NotEmpty(message ="User email must not be empty.")
+        @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}" , message = "Enter a valid email.")
         @Column(name = "email", nullable = false)
         private String email;
+
+        @Range(min = 10000000000L , max = 99999999999L , message = "Identity number must contain 11 digits.")
         @Column(name = "identity_number", nullable = false, unique = true)
         private long identityNumber;
+
+        @Range(min = 5000000000L , max = 5999999999L , message = "Phone number must start with 5 and contain 10 digits.")
         @Column(name = "phone_number", nullable = false)
         private long phoneNumber;
 
