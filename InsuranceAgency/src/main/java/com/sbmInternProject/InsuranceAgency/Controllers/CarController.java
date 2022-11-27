@@ -42,6 +42,7 @@ public class CarController {
     @RequestMapping(value = "/carInsurance", method = RequestMethod.GET)
     public String getCarInsurancePage(Model model) {
         model.addAttribute("car", new Car());
+        model.addAttribute("offer", new Offer());
         model.addAttribute("userlist", userService.getUsers());
         model.addAttribute("citylist", cityService.getCities());
         model.addAttribute("carbrandlist", carBrandService.getCarBrands());
@@ -61,33 +62,37 @@ public class CarController {
     }
 */
     @RequestMapping(value = "/carInsurance", method = RequestMethod.POST)
-    public String handleCarInsuranceForm(@ModelAttribute @Valid Car car, BindingResult result, Model model) {
+    public String handleCarInsuranceForm(@ModelAttribute @Valid Car car,@ModelAttribute @Valid Offer offer, BindingResult result, Model model) {
 
-        if (result.hasErrors() || car.getOffer().getStartDate()!=null ){
+        boolean isStartDateFalse=false;
 
-            if(car.getOffer().getStartDate()!=null){
-                if( car.getOffer().getStartDate().isBefore( LocalDate.now() ) ){
-                    model.addAttribute("errorMessage", "Select a valid date.");
-                }
+        if(offer.getStartDate()!=null){
+            if( offer.getStartDate().isBefore( LocalDate.now() ) ){
+                isStartDateFalse=true;
+                model.addAttribute("errorMessage", "Select a valid date.");
             }
+        }
+
+        if (result.hasErrors() || isStartDateFalse==true ){
+
             model.addAttribute("userlist", userService.getUsers());
             model.addAttribute("citylist", cityService.getCities());
             model.addAttribute("carbrandlist", carBrandService.getCarBrands());
             return "car_insurance";
         }
 
-        Offer offer=new Offer();
         offer.getOfferPrice(car);
         offer.setOfferDate(LocalDate.now());
-        offer.setStartDate(car.getOffer().getStartDate());
-        car.setOffer(offer);
-        //if(car.getOffer().getStartDate().isBefore(LocalDate.now()))
+        offer.setCar(car);
+        //offer.setStartDate(car.getOffer().getStartDate());
+        car.addOfferToCar(offer);
 
-        offerService.addOffer(offer);
-        //car.setCity(city);
         carService.addCar(car);
+        offerService.addOffer(offer);
+
 
         model.addAttribute("car", car);
+        model.addAttribute("offer", offer);
 
         return "car_insurance_offer";
     }

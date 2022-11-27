@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @ToString
@@ -44,10 +46,15 @@ public class Car {
     private User user;
 
     //@OneToOne
-    @OneToOne
+    /* @OneToOne
     //@NotEmpty(message ="Offer must be selected.")
     @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = false)
     private Offer offer;
+    */
+    @OneToMany(mappedBy = "car")
+    //@NotEmpty(message ="Offer must be selected.")
+    private List<Offer> offers=new ArrayList<>();
+
 
     @ManyToOne
     //@NotEmpty(message ="City must be selected.")
@@ -58,4 +65,9 @@ public class Car {
     //@NotEmpty(message ="Car brand must be selected.")
     @JoinColumn(name = "carBrand_id",referencedColumnName = "id", nullable = false)
     private CarBrand carBrand;
+
+    public Offer addOfferToCar(Offer offer){
+        offers.add(offer);
+        return offer;
+    }
 }

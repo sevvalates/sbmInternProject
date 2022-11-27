@@ -32,9 +32,14 @@ public class Offer {
     @Column(name = "start_date")
     public LocalDate startDate;
 
-
+  /*
     @OneToOne(mappedBy = "offer", cascade = CascadeType.REMOVE)
     public Car car;
+    */
+    @ManyToOne
+    @JoinColumn(name = "car_id", referencedColumnName = "id", nullable = false)
+    public Car car;
+
 
     private static int currentYear=LocalDate.now().getYear();
 

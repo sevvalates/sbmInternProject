@@ -120,6 +120,7 @@
                                 class = "form-control"
                                 placeholder="Enter License Serial Number"
                         />
+                        <p th:errors="*{licenseSerialNumber}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -146,15 +147,15 @@
                         <p th:errors="*{price}" class="text-danger"></p>
                     </div>
 
-                    <div class ="form-group">
+                    <div class ="form-group" th:object="${offer}">
                         <label> Insurance Start Date </label>
                         <input
                                 type = "date"
                                 name = "startDate"
-                                th:field = "*{offer.startDate}"
+                                th:field = "*{startDate}"
                                 class = "form-control"
                         />
-                        <p th:errors="*{offer.startDate}" class="text-danger"></p>
+                        <p th:errors="*{startDate}" class="text-danger"></p>
                         <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
 
