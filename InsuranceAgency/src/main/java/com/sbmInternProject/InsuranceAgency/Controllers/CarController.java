@@ -81,7 +81,7 @@ public class CarController {
             return "car_insurance";
         }
 
-        offer.getOfferPrice(car);
+        offer.getOfferPriceCar(car);
         offer.setOfferDate(LocalDate.now());
         offer.setCar(car);
         //offer.setStartDate(car.getOffer().getStartDate());

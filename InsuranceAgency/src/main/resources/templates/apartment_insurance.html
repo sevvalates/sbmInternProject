@@ -53,12 +53,13 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Get Offer for Car Insurance </h1>
+            <h1 class = "text-center"> Get Offer for Apartment Insurance </h1>
             <div class = "card-body">
-                <form action="#" th:action="@{/carInsurance}" th:object="${car}" method="post">
+                <form action="#" th:action="@{/apartmentInsurance}" th:object="${apartment}" method="post">
+
 
                     <div class ="form-group">
-                        <label> Owner of the Car  </label>
+                        <label> Owner of the Apartment  </label>
                         <select th:field="*{user}">
                             <option value=""> select owner </option>
                             <option th:each="user : ${userlist}"
@@ -71,7 +72,7 @@
                     </div>
 
                     <div class ="form-group">
-                        <label> User City </label>
+                        <label> Apartment City </label>
                         <select th:field="*{city}">
                             <option value=""> select user city </option>
                             <option th:each="city : ${citylist}"
@@ -84,52 +85,39 @@
                     </div>
 
                     <div class ="form-group">
-                        <label> Car Brand </label>
-                        <select th:field="*{carBrand}">
-                            <option value=""> select car brand </option>
-                            <option th:each="carBrand : ${carbrandlist}"
-                                    th:value="${carBrand.id}"
-                                    th:text="${carBrand.brandName}"/>
-                        </select>
-                        <br>
-                        <label> No Car Brand Data? </label>
-                        <a th:href = "@{/add_car_brand}" class = "btn btn-success">Add Car Brand</a>
+                        <label> Apartment Area </label>
+                        <input
+                                type = "text"
+                                name = "area"
+                                th:field = "*{area}"
+                                class = "form-control"
+                                placeholder="Enter Apartment Area"
+                        />
+                        <p th:errors="*{area}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
-                        <label> Plate Number </label>
+                        <label> Apartment Floor </label>
                         <input
                                 type = "text"
-                                name = "plateNumber"
-                                th:field = "*{plateNumber}"
+                                name = "floor"
+                                th:field = "*{floor}"
                                 class = "form-control"
-                                placeholder="Enter Plate Number"
+                                placeholder="Enter Apartment Floor"
                         />
-                        <p th:errors="*{plateNumber}" class="text-danger"></p>
+                        <p th:errors="*{floor}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
-                        <label> License Serial Number </label>
+                        <label> Apartment Build Year </label>
                         <input
                                 type = "text"
-                                name = "licenseSerialNumber"
-                                th:field = "*{licenseSerialNumber}"
+                                name = "yearBuild"
+                                th:field = "*{yearBuild}"
                                 class = "form-control"
-                                placeholder="Enter License Serial Number"
+                                placeholder="Enter Apartment Build Year"
                         />
-                        <p th:errors="*{licenseSerialNumber}" class="text-danger"></p>
-                    </div>
-
-                    <div class ="form-group">
-                        <label> Year Model </label>
-                        <input
-                                type = "text"
-                                name = "yearModel"
-                                th:field = "*{yearModel}"
-                                class = "form-control"
-                                placeholder="Enter Year Model "
-                        />
-                        <p th:errors="*{yearModel}" class="text-danger"></p>
+                        <p th:errors="*{yearBuild}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
@@ -155,7 +143,6 @@
                         <p th:errors="*{startDate}" class="text-danger"></p>
                         <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
-
 
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">

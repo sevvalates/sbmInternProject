@@ -30,6 +30,10 @@ public class City {
     @Column(name = "city_value", nullable = false)
     private int cityValue;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> car;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Apartment> apartment;
+
 }

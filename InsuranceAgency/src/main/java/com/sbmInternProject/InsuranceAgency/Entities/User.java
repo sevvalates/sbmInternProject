@@ -47,8 +47,10 @@ public class User {
         @Column(name = "phone_number", nullable = false)
         private long phoneNumber;
 
-        @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+        @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
         private List<Car> cars;
 
+        @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+        private List<Apartment> apartments;
 
 }

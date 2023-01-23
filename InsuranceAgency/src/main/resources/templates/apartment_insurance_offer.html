@@ -54,42 +54,81 @@
 
 <div class="container">
 
-    <h3>User List</h3>
+    <h4>Owner Information: </h4>
 
-    <hr/>
-    <a th:href="@{/register}" class="btn btn-primary">Register User</a>
-    <br/><br/>
     <table class="table table-bordered table-striped">
 
         <thead>
         <tr>
             <th>Name </th>
             <th>Surname </th>
-            <th>Birth Year</th>
-            <th>Email </th>
+            <th>Identity Number </th>
             <th>Identity Number </th>
             <th>Phone Number </th>
-            <th> Actions </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${userList}">
-            <td th:text="${user.name}" />
-            <td th:text="${user.surname}" />
-            <td th:text="${user.birthYear}"/>
-            <td th:text="${user.email}" />
-            <td th:text="${user.identityNumber}" />
-            <td th:text="${user.phoneNumber}" />
+        <td th:text="${apartment.user.name}" />
+        <td th:text="${apartment.user.surname}" />
+        <td th:text="${apartment.user.email}" />
+        <td th:text="${apartment.user.identityNumber}" />
+        <td th:text="${apartment.user.phoneNumber}" />
+        </tbody>
 
-            <td>
-              <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
-              <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
-            </td>
+    </table>
+    <table class="table table-bordered table-striped">
+        <h4>Apartment Information: </h4>
+        <thead>
+        <tr>
+            <th>City </th>
+            <th>Floor </th>
+            <th>Area </th>
+            <th>Year Model</th>
+            <th> Price </th>
         </tr>
-      </tbody>
+        </thead>
+        <tbody>
+        <td th:text="${apartment.getCity().getCityName()}" />
+        <td th:text="${apartment.floor}" />
+        <td th:text="${apartment.area}" />
+        <td th:text="${apartment.yearBuild}" />
+        <td th:text="${apartment.price}" />
+        <!--
+        <td>
+             <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
+             <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
+        </td>
+        -->
+        </tbody>
+    </table>
 
-  </table>
+    <table class="table table-bordered table-striped">
+        <h4>Apartment Insurance Offer: </h4>
+        <thead>
+        <tr>
+            <th>Offer Price</th>
+            <th>Offer Date </th>
+            <th>Approved Date </th>
+            <th>Actions </th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <td> <span th:text="${offer.offerPrice}" /> TL </td>
+        <td th:text="${offer.getOfferDate()}" />
+        <td th:text="${offer.getApprovedDate()}" />
+
+
+        <td>
+            <a th:href="@{/offerlist/approveTrue/{id} (id=${offer.id})}" class = "btn btn-primary" >Approve</a>
+            <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
+        </td>
+
+        </tbody>
+
+    </table>
+
 </div>
-
 </body>
 </html>

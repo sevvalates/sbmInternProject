@@ -37,8 +37,12 @@ public class Offer {
     public Car car;
     */
     @ManyToOne
-    @JoinColumn(name = "car_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "car_id", referencedColumnName = "id" )
     public Car car;
+
+    @ManyToOne
+    @JoinColumn(name = "apartment_id", referencedColumnName = "id")
+    public Apartment apartment;
 
 
     private static int currentYear=LocalDate.now().getYear();
@@ -50,6 +54,13 @@ public class Offer {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Apartment getApartment() {
+        return apartment;
+    }
+    public void setApartment(Apartment apartment) {
+        this.apartment = apartment;
     }
 
     public long getId() {
@@ -79,15 +90,27 @@ public class Offer {
     public long getOfferPrice() {
         return offerPrice;
     }
-    public long getOfferPrice(Car car) {
+    public long getOfferPriceCar(Car car) {
         offerPrice=(currentYear-car.getYearModel())
-                     *car.getCity().getCityValue()
-                     *car.getCarBrand().getBrandValue()
-                    + (car.getPrice()/100);
+                *car.getCity().getCityValue()
+                *car.getCarBrand().getBrandValue()
+                + (car.getPrice()/100);
         //long daysBetween=DAYS.between(startDate,endDate);
         //offerPrice=(offerPrice/30)*daysBetween;
         return offerPrice;
     }
+
+    public long getOfferPriceApartment(Apartment apartment) {
+        offerPrice=(currentYear-apartment.getYearBuild())
+                *apartment.getCity().getCityValue()
+                *apartment.getFloor()
+                *apartment.getArea()/10
+                + (apartment.getPrice()/100);
+        //long daysBetween=DAYS.between(startDate,endDate);
+        //offerPrice=(offerPrice/30)*daysBetween;
+        return offerPrice;
+    }
+
     public void setOfferPrice(long offerPrice) {
         this.offerPrice = offerPrice;
     }

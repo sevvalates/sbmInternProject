@@ -24,7 +24,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" >Insurance Agency</a>
+        <a class="nav-link" th:href="@{/homePage}">Insurance Agency</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{/register}">Register</a>
@@ -36,16 +36,13 @@
         <a class="nav-link" th:href="@{/carInsurance}">Car Insurance</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" th:href="@{/apartmentInsurance}">Apartment Insurance</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/add_city}">Add City</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" th:href="@{/citylist}">City List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/add_car_brand}">Add Car Brand</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{/carbrandlist}">Car Brand List</a>
@@ -83,6 +80,7 @@
     <h4>Car Information: </h4>
     <thead>
     <tr>
+      <th>City </th>
       <th>Plate Number </th>
       <th>License Serial Number </th>
       <th>Year Model</th>
@@ -90,6 +88,7 @@
     </tr>
     </thead>
     <tbody>
+    <td th:text="${car.getCity().getCityName()}" />
     <td th:text="${car.plateNumber}" />
     <td th:text="${car.licenseSerialNumber}" />
     <td th:text="${car.yearModel}" />
@@ -110,7 +109,8 @@
       <th>Offer Price</th>
       <th>Offer Date </th>
       <th>Approved Date </th>
-      <th>City </th>
+      <th>Actions </th>
+
 
     </tr>
     </thead>
@@ -118,11 +118,12 @@
       <td> <span th:text="${offer.offerPrice}" /> TL </td>
       <td th:text="${offer.getOfferDate()}" />
       <td th:text="${offer.getApprovedDate()}" />
+
+
       <td>
         <a th:href="@{/offerlist/approveTrue/{id} (id=${offer.id})}" class = "btn btn-primary" >Approve</a>
         <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
       </td>
-      <td th:text="${car.getCity().getCityName()}" />
 
     </tbody>
 
