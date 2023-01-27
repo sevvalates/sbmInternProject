@@ -54,42 +54,33 @@
         </tr>
         </thead>
         <tbody>
-        <td th:text="${apartment.user.name}" />
-        <td th:text="${apartment.user.surname}" />
-        <td th:text="${apartment.user.email}" />
-        <td th:text="${apartment.user.identityNumber}" />
-        <td th:text="${apartment.user.phoneNumber}" />
+        <td th:text="${travel.user.name}" />
+        <td th:text="${travel.user.surname}" />
+        <td th:text="${travel.user.email}" />
+        <td th:text="${travel.user.identityNumber}" />
+        <td th:text="${travel.user.phoneNumber}" />
         </tbody>
 
     </table>
     <table class="table table-bordered table-striped">
-        <h4>Apartment Information: </h4>
+        <h4>Travel Information: </h4>
         <thead>
         <tr>
-            <th>City </th>
-            <th>Floor </th>
-            <th>Area </th>
-            <th>Year Model</th>
-            <th> Price </th>
+            <th>Start Date </th>
+            <th>Day Number </th>
+            <th>Average Distance </th>
         </tr>
         </thead>
         <tbody>
-        <td th:text="${apartment.getCity().getCityName()}" />
-        <td th:text="${apartment.floor}" />
-        <td th:text="${apartment.area}" />
-        <td th:text="${apartment.yearBuild}" />
-        <td th:text="${apartment.price}" />
-        <!--
-        <td>
-             <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
-             <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
-        </td>
-        -->
+        <td th:text="${travel.getStartDate()}" />
+        <td th:text="${travel.getDayNumber()}" />
+        <td th:text="${travel.getAverageDistance()}+ km" />
+
         </tbody>
     </table>
 
     <table class="table table-bordered table-striped">
-        <h4>Apartment Insurance Offer: </h4>
+        <h4>Car Insurance Offer: </h4>
         <thead>
         <tr>
             <th>Offer Price</th>

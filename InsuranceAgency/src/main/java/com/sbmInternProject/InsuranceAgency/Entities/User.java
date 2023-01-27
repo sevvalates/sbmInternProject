@@ -53,4 +53,7 @@ public class User {
         @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
         private List<Apartment> apartments;
 
+        @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+        private List<Travel> travels;
+
 }

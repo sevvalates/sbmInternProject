@@ -36,4 +36,6 @@ public class City {
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Apartment> apartment;
 
+
+
 }

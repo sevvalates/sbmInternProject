@@ -1,7 +1,6 @@
 package com.sbmInternProject.InsuranceAgency.Controllers;
 
 import com.sbmInternProject.InsuranceAgency.Entities.Apartment;
-import com.sbmInternProject.InsuranceAgency.Entities.Car;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Services.ApartmentService;
 import com.sbmInternProject.InsuranceAgency.Services.CityService;
@@ -50,15 +49,6 @@ public class ApartmentController {
         return "apartment_insurance";
     }
 
-   /* @RequestMapping(value = "/apartmentInsurance", method = RequestMethod.POST)
-    public String handleApartmentInsuranceForm(@ModelAttribute Apartment apartment, Model model) {
-
-        apartmentService.addApartment(apartment);
-       // model.addAttribute("apartment", apartment);
-
-        return "apartment_insurance_offer";
-    }*/
-
     @RequestMapping(value = "/apartmentInsurance", method = RequestMethod.POST)
     public String handleApartmentInsuranceForm(@ModelAttribute @Valid Apartment apartment, @ModelAttribute @Valid Offer offer, BindingResult result, Model model) {
 
@@ -82,12 +72,10 @@ public class ApartmentController {
         offer.getOfferPriceApartment(apartment);
         offer.setOfferDate(LocalDate.now());
         offer.setApartment(apartment);
-        //offer.setStartDate(car.getOffer().getStartDate());
         apartment.addOfferToApartment(offer);
 
         apartmentService.addApartment(apartment);
         offerService.addOffer(offer);
-
 
         model.addAttribute("apartment", apartment);
         model.addAttribute("offer", offer);

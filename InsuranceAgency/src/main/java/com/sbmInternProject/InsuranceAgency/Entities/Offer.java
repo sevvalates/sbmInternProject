@@ -44,6 +44,11 @@ public class Offer {
     @JoinColumn(name = "apartment_id", referencedColumnName = "id")
     public Apartment apartment;
 
+    @ManyToOne
+    @JoinColumn(name = "travel_id", referencedColumnName = "id")
+    public Travel travel;
+
+
 
     private static int currentYear=LocalDate.now().getYear();
 
@@ -51,7 +56,6 @@ public class Offer {
     public Car getCar() {
         return car;
     }
-
     public void setCar(Car car) {
         this.car = car;
     }
@@ -63,6 +67,12 @@ public class Offer {
         this.apartment = apartment;
     }
 
+    public Travel getTravel() {
+        return travel;
+    }
+    public void setTravel(Travel travel) {
+        this.travel = travel;
+    }
     public long getId() {
         return id;
     }
@@ -94,20 +104,26 @@ public class Offer {
         offerPrice=(currentYear-car.getYearModel())
                 *car.getCity().getCityValue()
                 *car.getCarBrand().getBrandValue()
-                + (car.getPrice()/100);
+                + (car.getPrice()/1000);
         //long daysBetween=DAYS.between(startDate,endDate);
         //offerPrice=(offerPrice/30)*daysBetween;
         return offerPrice;
     }
-
     public long getOfferPriceApartment(Apartment apartment) {
         offerPrice=(currentYear-apartment.getYearBuild())
                 *apartment.getCity().getCityValue()
-                *apartment.getFloor()
-                *apartment.getArea()/10
-                + (apartment.getPrice()/100);
-        //long daysBetween=DAYS.between(startDate,endDate);
-        //offerPrice=(offerPrice/30)*daysBetween;
+                *apartment.getArea()/100
+                + (apartment.getPrice()/1000);
+
+        if(apartment.getFloor()>10)
+        offerPrice*=2;
+
+        return offerPrice;
+    }
+
+    public long getOfferPriceTravel(Travel travel) {
+
+        offerPrice=travel.getDayNumber()*travel.getAverageDistance()*100;
         return offerPrice;
     }
 

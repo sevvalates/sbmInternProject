@@ -9,7 +9,6 @@
     <title>Insurance Agency</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -40,80 +39,71 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Register New User </h1>
+            <h1 class = "text-center"> Get Offer for Travel Insurance </h1>
             <div class = "card-body">
-                <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+                <form action="#" th:action="@{/travelInsurance}" th:object="${travel}" method="post">
+
                     <div class ="form-group">
-                        <label> User Name </label>
-                        <input
-                                type = "text"
-                                name = "name"
-                                th:field = "*{name}"
-                                class = "form-control"
-                                placeholder="Enter User Name"
-                        />
-                        <p th:errors="*{name}" class="text-danger"></p>
+                        <label> Owner of the Travel  </label>
+                        <select th:field="*{user}">
+                            <option value=""> select owner </option>
+                            <option th:each="user : ${userlist}"
+                                    th:value="${user.id}"
+                                    th:text="${user.identityNumber + ' - ' + user.name + ' ' + user.surname}"/>
+                        </select>
+                        <br>
+                        <label> Not registered yet? </label>
+                        <a th:href = "@{/register}" class = "btn btn-success">Register Now</a>
                     </div>
 
                     <div class ="form-group">
-                        <label> User Surname </label>
+                        <label> Travel Start Date </label>
                         <input
-                                type = "text"
-                                name = "surname"
-                                th:field = "*{surname}"
+                                type = "date"
+                                name = "startDate"
+                                th:field = "*{startDate}"
                                 class = "form-control"
-                                placeholder="Enter User Surname"
                         />
-                        <p th:errors="*{surname}" class="text-danger"></p>
-                    </div>
-                    <div class ="form-group">
-                        <label> User Birth Year </label>
-                        <input
-                                type = "text"
-                                name = "birthYear"
-                                th:field = "*{birthYear}"
-                                class = "form-control"
-                                placeholder="Enter User Birth Year"
-                        />
-                        <p th:errors="*{birthYear}" class="text-danger"></p>
+                        <p th:errors="*{startDate}" class="text-danger"></p>
                         <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
-                        <label> User Email </label>
+                        <label> Day Number </label>
                         <input
                                 type = "text"
-                                name = "email"
-                                th:field = "*{email}"
+                                name = "dayNumber"
+                                th:field = "*{dayNumber}"
                                 class = "form-control"
-                                placeholder="Enter User Email"
+                                placeholder="Enter Day Number"
                         />
-                        <p th:errors="*{email}" class="text-danger"></p>
+                        <p th:errors="*{dayNumber}" class="text-danger"></p>
                     </div>
 
                     <div class ="form-group">
-                        <label> User Identity Number </label>
+                        <label> Average Distance by km's </label>
                         <input
                                 type = "text"
-                                name = "identityNumber"
-                                th:field = "*{identityNumber}"
+                                name = "averageDistance"
+                                th:field = "*{averageDistance}"
                                 class = "form-control"
-                                placeholder="Enter User Identity Number"
+                                placeholder="Enter Average Distance by km's"
                         />
-                        <p th:errors="*{identityNumber}" class="text-danger"></p>
+                        <p th:errors="*{averageDistance}" class="text-danger"></p>
                     </div>
 
-                    <div class ="form-group">
-                        <label> User Phone Number </label>
+                    <div class ="form-group" th:object="${offer}">
+                        <label> Insurance Start Date </label>
                         <input
-                                type = "text"
-                                name = "phoneNumber"
-                                th:field = "*{phoneNumber}"
+                                type = "date"
+                                name = "startDate"
+                                th:field = "*{startDate}"
                                 class = "form-control"
-                                placeholder="Enter User Phone Number"
                         />
-                        <p th:errors="*{phoneNumber}" class="text-danger"></p>
+                        <p th:errors="*{startDate}" class="text-danger"></p>
+                        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
                     </div>
+
 
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">

@@ -37,8 +37,4 @@ public class OfferServiceImpl implements OfferService {
         return offerRepository.findById(id).get();
     }
 
-   /* @Override
-    public Offer getOfferListById(Long id) {
-        return offerRepository.findAllByOneId(id);
-    }*/
 }

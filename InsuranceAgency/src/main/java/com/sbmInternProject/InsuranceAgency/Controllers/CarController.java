@@ -1,7 +1,6 @@
 package com.sbmInternProject.InsuranceAgency.Controllers;
 
 import com.sbmInternProject.InsuranceAgency.Entities.Car;
-import com.sbmInternProject.InsuranceAgency.Entities.City;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +88,6 @@ public class CarController {
 
         carService.addCar(car);
         offerService.addOffer(offer);
-
 
         model.addAttribute("car", car);
         model.addAttribute("offer", offer);

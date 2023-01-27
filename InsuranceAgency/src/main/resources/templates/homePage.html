@@ -5,22 +5,13 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
           crossorigin="anonymous" />
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Insurance Agency</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand
-    <a class="navbar-brand" href="#">Student Management System</a>-->
 
-    <!-- Toggler/collapsibe Button
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button> -->
-
-    <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -31,12 +22,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/userlist}">User List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/carInsurance}">Car Insurance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/apartmentInsurance}">Apartment Insurance</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
@@ -51,12 +36,26 @@
     </div>
 </nav>
 <br>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 
-<div class="container">
+            <h1 class = "text-center"> Welcome to Insurance Agency </h1>
+            <div class = "card-body">
 
-    <h3>welcome</h3>
+                <h5 class = "text-center"> Select the insurance type that you need : </h5>
 
+                <div class="text-center">
+                <a th:href="@{/carInsurance}" class="btn btn-success">Car Insurance</a>
+                <a th:href="@{/apartmentInsurance}" class="btn btn-success">Apartment Insurance</a>
+                <a th:href="@{/travelInsurance}" class="btn btn-success">Travel Insurance</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
