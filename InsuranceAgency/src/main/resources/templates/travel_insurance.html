@@ -29,6 +29,9 @@
                 <a class="nav-link" th:href="@{/citylist}">City List</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" th:href="@{/countrylist}">Country List</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/carbrandlist}">Car Brand List</a>
             </li>
         </ul>
@@ -90,6 +93,19 @@
                                 placeholder="Enter Average Distance by km's"
                         />
                         <p th:errors="*{averageDistance}" class="text-danger"></p>
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Destination Country </label>
+                        <select th:field="*{country}">
+                            <option value=""> select destination country  </option>
+                            <option th:each="country : ${countrylist}"
+                                    th:value="${country.id}"
+                                    th:text="${country.countryName}"/>
+                        </select>
+                        <br>
+                        <label> No Country Data? </label>
+                        <a th:href = "@{/add_country}" class = "btn btn-success">Add Country</a>
                     </div>
 
                     <div class ="form-group" th:object="${offer}">

@@ -1,5 +1,4 @@
 package com.sbmInternProject.InsuranceAgency.Services;
-
 import com.sbmInternProject.InsuranceAgency.Entities.City;
 import java.util.List;
 

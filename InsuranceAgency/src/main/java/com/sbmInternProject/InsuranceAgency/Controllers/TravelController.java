@@ -2,9 +2,7 @@ package com.sbmInternProject.InsuranceAgency.Controllers;
 
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Entities.Travel;
-import com.sbmInternProject.InsuranceAgency.Services.OfferService;
-import com.sbmInternProject.InsuranceAgency.Services.TravelService;
-import com.sbmInternProject.InsuranceAgency.Services.UserService;
+import com.sbmInternProject.InsuranceAgency.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,33 +10,37 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
 public class TravelController {
-
     @Autowired
     private final TravelService travelService;
-
     @Autowired
     private final UserService userService;
-
     @Autowired
     private final OfferService offerService;
 
-    public TravelController(TravelService travelService, UserService userService, OfferService offerService) {
+    @Autowired
+    private final CountryService countryService;
+
+    public TravelController(TravelService travelService, UserService userService, OfferService offerService, CountryService countryService) {
+
         this.travelService = travelService;
         this.userService = userService;
         this.offerService = offerService;
+        this.countryService = countryService;
     }
 
     @RequestMapping(value = "/travelInsurance", method = RequestMethod.GET)
     public String getTravelInsurancePage(Model model) {
+
         model.addAttribute("travel", new Travel());
         model.addAttribute("offer", new Offer());
         model.addAttribute("userlist", userService.getUsers());
+        model.addAttribute("countrylist",countryService.getCountries());
+
         return "travel_insurance";
     }
 
@@ -64,6 +66,7 @@ public class TravelController {
 
         if (result.hasErrors() || isOfferStartDateFalse==true || isTravelStartDateFalse==true){
             model.addAttribute("userlist", userService.getUsers());
+            model.addAttribute("countrylist",countryService.getCountries());
             return "travel_insurance";
         }
 
@@ -80,4 +83,5 @@ public class TravelController {
 
         return "travel_insurance_offer";
     }
+
 }

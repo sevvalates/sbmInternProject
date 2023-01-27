@@ -105,8 +105,6 @@ public class Offer {
                 *car.getCity().getCityValue()
                 *car.getCarBrand().getBrandValue()
                 + (car.getPrice()/1000);
-        //long daysBetween=DAYS.between(startDate,endDate);
-        //offerPrice=(offerPrice/30)*daysBetween;
         return offerPrice;
     }
     public long getOfferPriceApartment(Apartment apartment) {
@@ -123,7 +121,10 @@ public class Offer {
 
     public long getOfferPriceTravel(Travel travel) {
 
-        offerPrice=travel.getDayNumber()*travel.getAverageDistance()*100;
+        offerPrice= travel.getDayNumber()*
+                    travel.getAverageDistance()*
+                    travel.getCountry().getCountryValue()*100;
+
         return offerPrice;
     }
 

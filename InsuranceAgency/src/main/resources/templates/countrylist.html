@@ -43,75 +43,32 @@
 
 <div class="container">
 
-  <h4>Owner Information: </h4>
+  <h3>Country List</h3>
 
+  <hr/>
+  <a th:href="@{/add_country}" class="btn btn-primary">Add Country</a>
+  <br/><br/>
   <table class="table table-bordered table-striped">
 
     <thead>
     <tr>
-      <th>Name </th>
-      <th>Surname </th>
-      <th>Identity Number </th>
-      <th>Identity Number </th>
-      <th>Phone Number </th>
+      <th>Country Name </th>
+      <th>Value </th>
     </tr>
     </thead>
     <tbody>
-      <td th:text="${car.user.name}" />
-      <td th:text="${car.user.surname}" />
-      <td th:text="${car.user.email}" />
-      <td th:text="${car.user.identityNumber}" />
-      <td th:text="${car.user.phoneNumber}" />
-    </tbody>
-
-  </table>
-  <table class="table table-bordered table-striped">
-    <h4>Car Information: </h4>
-    <thead>
-    <tr>
-      <th>City </th>
-      <th>Plate Number </th>
-      <th>License Serial Number </th>
-      <th>Year Model</th>
-      <th> Price </th>
-    </tr>
-    </thead>
-    <tbody>
-    <td th:text="${car.getCity().getCityName()}" />
-    <td th:text="${car.plateNumber}" />
-    <td th:text="${car.licenseSerialNumber}" />
-    <td th:text="${car.yearModel}" />
-    <td th:text="${car.price}" />
-    </tbody>
-  </table>
-
-  <table class="table table-bordered table-striped">
-    <h4>Car Insurance Offer: </h4>
-    <thead>
-    <tr>
-      <th>Offer Price</th>
-      <th>Offer Date </th>
-      <th>Approved Date </th>
-      <th>Actions </th>
-
-
-    </tr>
-    </thead>
-    <tbody>
-      <td> <span th:text="${offer.offerPrice}" /> TL </td>
-      <td th:text="${offer.getOfferDate()}" />
-      <td th:text="${offer.getApprovedDate()}" />
-
+    <tr th:each="country: ${countrylist}">
+      <td th:text="${country.countryName}" />
+      <td th:text="${country.countryValue}" />
 
       <td>
-        <a th:href="@{/offerlist/approveTrue/{id} (id=${offer.id})}" class = "btn btn-primary" >Approve</a>
-        <a th:href="@{/offerlist}" class="btn btn-danger ml-2">Cancel</a>
+        <a th:href="@{/countrylist/{id}(id=${country.id})}" class="btn btn-danger ml-2">Delete</a>
       </td>
-
+    </tr>
     </tbody>
 
   </table>
-
 </div>
+
 </body>
 </html>

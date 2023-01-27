@@ -50,6 +50,10 @@ public class Travel {
     //@NotEmpty(message ="Offer must be selected.")
     private List<Offer> offers=new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "country_id",referencedColumnName = "id", nullable = false)
+    private Country country;
+
     public Offer addOfferToTravel(Offer offer) {
         offers.add(offer);
         return offer;

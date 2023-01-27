@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Insurance Agency</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/homePage}">Insurance Agency</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/register}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/userlist}">User List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/offerlist}">Offer List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/citylist}">City List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/countrylist}">Country List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/carbrandlist}">Car Brand List</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Add Country Data </h1>
+      <div class = "card-body">
+        <form action="#" th:action="@{/add_country}" th:object="${country}" method="post">
+          <div class ="form-group">
+            <label> Country Name </label>
+            <input
+                    type = "text"
+                    name = "countryName"
+                    th:field = "*{countryName}"
+                    class = "form-control"
+                    placeholder="Enter country Name"
+            />
+          </div>
+
+          <div class ="form-group">
+            <label> Country Value </label>
+            <input
+                    type = "text"
+                    name = "countryValue"
+                    th:field = "*{countryValue}"
+                    class = "form-control"
+                    placeholder="Enter Country Value"
+            />
+            <p th:errors="*{countryValue}" class="text-danger"></p>
+          </div>
+
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary">
+              Add
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
