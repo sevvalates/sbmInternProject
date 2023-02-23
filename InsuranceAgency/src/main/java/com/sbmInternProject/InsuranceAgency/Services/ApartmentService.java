@@ -6,6 +6,6 @@ import com.sbmInternProject.InsuranceAgency.Entities.Car;
 public interface ApartmentService {
 
     Apartment addApartment(Apartment apartment);
-
     Apartment getApartmentById(Long id);
+
 }

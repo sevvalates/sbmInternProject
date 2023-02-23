@@ -21,20 +21,18 @@ public class OfferServiceImpl implements OfferService {
     public Offer addOffer(Offer offer) {
         return offerRepository.save(offer);
     }
-
     @Override
     public List<Offer> getOffers() {
         return offerRepository.findAll();
     }
-
     @Override
     public Offer updateOffer(Offer offer) {
         return offerRepository.save(offer);
     }
-
     @Override
     public Offer getOfferById(Long id) {
         return offerRepository.findById(id).get();
     }
+
 
 }

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -39,12 +38,10 @@ public class Travel {
     @Column(name = "average_distance", nullable = false)
     private int averageDistance;
 
-
     @ManyToOne
     //@NotEmpty(message ="User must be selected.")
     @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
     private User user;
-
 
     @OneToMany(mappedBy = "travel", fetch = FetchType.LAZY)
     //@NotEmpty(message ="Offer must be selected.")

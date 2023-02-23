@@ -31,4 +31,5 @@ public class CarBrand {
 
     @OneToMany(mappedBy = "carBrand", cascade = CascadeType.REMOVE)
     private List<Car> car;
+
 }

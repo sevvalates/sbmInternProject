@@ -8,12 +8,14 @@ import java.util.List;
 
 @Service
 public class CarBrandServiceImpl implements CarBrandService{
+
     private final CarBrandRepository carBrandRepository;
 
     @Autowired
     public CarBrandServiceImpl(CarBrandRepository carBrandRepository) {
         this.carBrandRepository = carBrandRepository;
     }
+
     @Override
     public CarBrand addCarBrand(CarBrand carBrand) {
         return carBrandRepository.save(carBrand);
@@ -26,4 +28,5 @@ public class CarBrandServiceImpl implements CarBrandService{
     public void deleteCarBrandById(Long id) {
         carBrandRepository.deleteById(id);
     }
+
 }

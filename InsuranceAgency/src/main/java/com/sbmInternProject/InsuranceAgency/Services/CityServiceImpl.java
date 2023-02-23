@@ -8,12 +8,14 @@ import java.util.List;
 
 @Service
 public class CityServiceImpl implements CityService{
+
     private final CityRepository cityRepository;
 
     @Autowired
     public CityServiceImpl(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
     }
+
     @Override
     public City addCity(City city) {
         return cityRepository.save(city);
@@ -26,4 +28,5 @@ public class CityServiceImpl implements CityService{
     public void deleteCityById(Long id) {
         cityRepository.deleteById(id);
     }
+
 }

@@ -10,6 +10,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "users")
 public class User {

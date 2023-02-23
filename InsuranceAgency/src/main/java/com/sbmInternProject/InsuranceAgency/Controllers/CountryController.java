@@ -17,7 +17,6 @@ public class CountryController {
 
     @Autowired
     private final CountryService countryService;
-
     @Autowired
     public CountryController(CountryService countryService) {
         this.countryService = countryService;
@@ -25,28 +24,34 @@ public class CountryController {
 
     @RequestMapping(value = "/add_country", method = RequestMethod.GET)
     public String getCountryPage(Model model) {
+
         model.addAttribute("country", new Country());
         return "add_country";
     }
 
     @RequestMapping(value = "/add_country", method = RequestMethod.POST)
     public String handleCountryForm(@ModelAttribute @Valid Country country, BindingResult result, Model model) {
+
         model.addAttribute("country", country);
+
         if (result.hasErrors()){
             return "add_country";
         }
+
         countryService.addCountry(country);
         return "redirect:/countrylist";
     }
 
     @RequestMapping(value = "/countrylist", method = RequestMethod.GET)
     public String getCountryListPage(Model model) {
+
         model.addAttribute("countrylist", countryService.getCountries());
         return "countrylist";
     }
 
     @RequestMapping(value = "/countrylist/{id}", method = RequestMethod.GET)
     public String deleteCountry(@PathVariable Long id) {
+
         countryService.deleteCountryById(id);
         return "redirect:/countrylist";
     }

@@ -29,7 +29,6 @@ public class Car {
     @Column(name = "license_serial_number", nullable = false)
     private long licenseSerialNumber; // ruhsat seri no
 
-    @Max(value = 2022) //LocalDate.now().getYear() ?????
     @Min(value = 1990 , message="Model year must be min 1990.")
     @Column(name = "year_model", nullable = false)
     private int yearModel; //uretim tarihi
@@ -43,16 +42,9 @@ public class Car {
     @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
     private User user;
 
-    //@OneToOne
-    /* @OneToOne
-    //@NotEmpty(message ="Offer must be selected.")
-    @JoinColumn(name = "offer_id", referencedColumnName = "id", nullable = false)
-    private Offer offer;
-    */
     @OneToMany(mappedBy = "car")
     //@NotEmpty(message ="Offer must be selected.")
     private List<Offer> offers=new ArrayList<>();
-
 
     @ManyToOne
     //@NotEmpty(message ="City must be selected.")
@@ -64,8 +56,10 @@ public class Car {
     @JoinColumn(name = "carBrand_id",referencedColumnName = "id", nullable = false)
     private CarBrand carBrand;
 
+
     public Offer addOfferToCar(Offer offer){
         offers.add(offer);
         return offer;
     }
+
 }

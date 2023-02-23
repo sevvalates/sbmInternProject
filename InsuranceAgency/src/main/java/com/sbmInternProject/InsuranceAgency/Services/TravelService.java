@@ -4,4 +4,5 @@ import com.sbmInternProject.InsuranceAgency.Entities.Travel;
 
 public interface TravelService {
     Travel addTravel(Travel travel);
+
 }

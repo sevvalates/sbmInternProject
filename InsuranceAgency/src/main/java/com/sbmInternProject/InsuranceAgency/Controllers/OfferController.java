@@ -22,6 +22,7 @@ public class OfferController {
 
     @RequestMapping(value = "/offerlist", method = RequestMethod.GET)
     public String getOfferListPage(Model model) {
+
         model.addAttribute("offerList", offerService.getOffers());
         return "offerlist";
     }
@@ -31,18 +32,8 @@ public class OfferController {
 
         Offer existingOffer= offerService.getOfferById(id);
         existingOffer.setApproved(true);
-        //existingOffer.setOfferDate(LocalDate.now());
         existingOffer.setApprovedDate(LocalDate.now());
         offerService.updateOffer(existingOffer);
-
         return "redirect:/offerlist";
     }
-
- /*   @RequestMapping(value = "/offerlist/{id}", method = RequestMethod.GET)
-    public String getPersonalOfferList(@PathVariable Long id , Model model) {
-        model.addAttribute("offerList", offerService.getOfferListById(id));
-        return "personal_offerlist";
-    }*/
-
-
 }

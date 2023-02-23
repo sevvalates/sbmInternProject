@@ -19,4 +19,5 @@ public class TravelServiceImpl implements TravelService{
     public Travel addTravel(Travel travel) {
         return travelRepository.save(travel);
     }
+
 }

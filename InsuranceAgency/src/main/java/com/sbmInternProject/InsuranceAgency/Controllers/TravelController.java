@@ -21,7 +21,6 @@ public class TravelController {
     private final UserService userService;
     @Autowired
     private final OfferService offerService;
-
     @Autowired
     private final CountryService countryService;
 
@@ -40,7 +39,6 @@ public class TravelController {
         model.addAttribute("offer", new Offer());
         model.addAttribute("userlist", userService.getUsers());
         model.addAttribute("countrylist",countryService.getCountries());
-
         return "travel_insurance";
     }
 
@@ -80,8 +78,6 @@ public class TravelController {
 
         model.addAttribute("travel",travel);
         model.addAttribute("offer", offer);
-
         return "travel_insurance_offer";
     }
-
 }

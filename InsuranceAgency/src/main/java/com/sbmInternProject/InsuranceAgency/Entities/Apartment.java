@@ -1,13 +1,10 @@
 package com.sbmInternProject.InsuranceAgency.Entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,6 @@ public class Apartment {
     @Column(name = "floor", nullable = false)
     private int floor;
 
-    @Max(value = 2022) //LocalDate.now().getYear() ?????
     @Min(value = 1990 , message="Build year must be min 1990.")
     @Column(name = "year_build", nullable = false)
     private int yearBuild; //insa tarihi

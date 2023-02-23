@@ -17,22 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 import java.time.LocalDate;
 
-
 @Controller
 public class ApartmentController {
 
     @Autowired
     private final ApartmentService apartmentService;
-
     @Autowired
     private final UserService userService;
-
     @Autowired
     private final OfferService offerService;
     @Autowired
     private final CityService cityService;
 
     public ApartmentController(ApartmentService apartmentService, UserService userService, OfferService offerService, CityService cityService) {
+
         this.apartmentService = apartmentService;
         this.userService = userService;
         this.offerService = offerService;
@@ -41,11 +39,11 @@ public class ApartmentController {
 
     @RequestMapping(value = "/apartmentInsurance", method = RequestMethod.GET)
     public String getApartmentInsurancePage(Model model) {
+
         model.addAttribute("apartment", new Apartment());
         model.addAttribute("offer", new Offer());
         model.addAttribute("userlist", userService.getUsers());
         model.addAttribute("citylist", cityService.getCities());
-
         return "apartment_insurance";
     }
 
@@ -62,10 +60,8 @@ public class ApartmentController {
         }
 
         if (result.hasErrors() || isStartDateFalse==true ){
-
             model.addAttribute("userlist", userService.getUsers());
             model.addAttribute("citylist", cityService.getCities());
-
             return "apartment_insurance";
         }
 
@@ -79,7 +75,6 @@ public class ApartmentController {
 
         model.addAttribute("apartment", apartment);
         model.addAttribute("offer", offer);
-
         return "apartment_insurance_offer";
     }
 }

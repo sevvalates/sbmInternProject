@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 public class CarServiceImpl implements CarService{
 
     private final CarRepository carRepository;
+
     @Autowired
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -18,9 +19,9 @@ public class CarServiceImpl implements CarService{
     public Car addCar(Car car) {
         return carRepository.save(car);
     }
-
     @Override
     public Car getCarById(Long id) {
         return carRepository.findById(id).get();
     }
+
 }
