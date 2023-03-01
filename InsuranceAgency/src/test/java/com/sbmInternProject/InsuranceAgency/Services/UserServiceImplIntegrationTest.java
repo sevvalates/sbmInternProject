@@ -21,7 +21,9 @@ public class UserServiceImplIntegrationTest {
 
         @BeforeEach
         public void setUp() {
-            userRepository.deleteAll();
+                //ensure that the tests are run on an empty repository
+                //also helps in keeping the tests independent of each other
+                userRepository.deleteAll();
         }
 
 
@@ -98,10 +100,10 @@ public class UserServiceImplIntegrationTest {
 
                 userRepository.save(user);
 
-                userServiceImpl.deleteUserById(1L);
+                userServiceImpl.deleteUserById(user.getId());
 
                 //`Optional` used because the user with the given id might not exist in the repository
-                Optional<User> result = userRepository.findById(1L);
+                Optional<User> result = userRepository.findById(user.getId());
 
                 //check whether the user is present or not in the repository after deletion
                 Assert.assertFalse(result.isPresent());
@@ -121,7 +123,7 @@ public class UserServiceImplIntegrationTest {
 
                 userRepository.save(user);
 
-                User result = userServiceImpl.getUserById(1L);
+                User result = userServiceImpl.getUserById(user.getId());
 
                 Assert.assertNotNull(result);
                 Assert.assertEquals(result.getName(), user.getName());
