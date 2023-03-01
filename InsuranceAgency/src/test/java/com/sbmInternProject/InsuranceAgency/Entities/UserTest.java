@@ -62,4 +62,6 @@ public class UserTest {
             Assertions.assertEquals(apartments, user.getApartments());
             Assertions.assertEquals(travels, user.getTravels());
         }
+
+
 }
