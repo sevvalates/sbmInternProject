@@ -16,7 +16,6 @@ import java.util.List;
 @Entity
 @Table(name = "carBrand")
 public class CarBrand {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)

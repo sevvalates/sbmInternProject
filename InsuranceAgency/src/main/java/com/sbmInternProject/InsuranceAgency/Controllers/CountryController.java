@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 @Controller
 public class CountryController {
-
     @Autowired
     private final CountryService countryService;
     @Autowired

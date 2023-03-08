@@ -78,4 +78,5 @@ public class UserController {
         userService.updateUser(existingUser);
         return "redirect:/userlist";
     }
+
 }

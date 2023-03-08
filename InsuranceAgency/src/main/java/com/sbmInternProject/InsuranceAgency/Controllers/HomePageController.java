@@ -14,4 +14,5 @@ public class HomePageController {
         model.addAttribute("title", "Insurance Agency");
         return "homePage";
     }
+
 }

@@ -19,7 +19,6 @@ import java.time.LocalDate;
 
 @Controller
 public class ApartmentController {
-
     @Autowired
     private final ApartmentService apartmentService;
     @Autowired
@@ -77,4 +76,5 @@ public class ApartmentController {
         model.addAttribute("offer", offer);
         return "apartment_insurance_offer";
     }
+
 }

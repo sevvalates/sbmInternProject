@@ -80,4 +80,5 @@ public class TravelController {
         model.addAttribute("offer", offer);
         return "travel_insurance_offer";
     }
+
 }

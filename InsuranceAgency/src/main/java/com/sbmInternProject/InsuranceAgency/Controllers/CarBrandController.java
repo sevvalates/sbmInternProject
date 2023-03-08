@@ -55,4 +55,5 @@ public class CarBrandController {
         carBrandService.deleteCarBrandById(id);
         return "redirect:/carbrandlist";
     }
+
 }

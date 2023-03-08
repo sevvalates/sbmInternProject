@@ -15,7 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "cities")
 public class City {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)

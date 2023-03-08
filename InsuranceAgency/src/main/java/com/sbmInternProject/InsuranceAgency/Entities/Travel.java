@@ -17,7 +17,6 @@ import java.util.List;
 @Entity
 @Table(name = "travels")
 public class Travel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
@@ -56,4 +55,5 @@ public class Travel {
         offers.add(offer);
         return offer;
     }
+
 }

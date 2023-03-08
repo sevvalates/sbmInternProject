@@ -77,4 +77,5 @@ public class CarController {
         model.addAttribute("offer", offer);
         return "car_insurance_offer";
     }
+
 }

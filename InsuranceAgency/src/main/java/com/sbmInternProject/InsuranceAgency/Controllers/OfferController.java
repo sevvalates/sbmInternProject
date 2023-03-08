@@ -36,4 +36,5 @@ public class OfferController {
         offerService.updateOffer(existingOffer);
         return "redirect:/offerlist";
     }
+
 }

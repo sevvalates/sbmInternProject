@@ -36,4 +36,5 @@ public class TravelTest {
 
             assertEquals(travel.getOffers().get(0).getId(), 1L);
         }
+
 }
