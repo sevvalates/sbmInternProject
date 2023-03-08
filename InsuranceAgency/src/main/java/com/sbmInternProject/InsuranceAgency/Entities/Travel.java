@@ -36,11 +36,13 @@ public class Travel {
     @Column(name = "average_distance", nullable = false)
     private int averageDistance;
 
+    @ToString.Exclude
     @ManyToOne
     //@NotEmpty(message ="User must be selected.")
     @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
     private User user;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "travel", fetch = FetchType.LAZY)
     //@NotEmpty(message ="Offer must be selected.")
     private List<Offer> offers=new ArrayList<>();
@@ -48,6 +50,7 @@ public class Travel {
     @ManyToOne
     @JoinColumn(name = "country_id",referencedColumnName = "id", nullable = false)
     private Country country;
+
 
     public Offer addOfferToTravel(Offer offer) {
         offers.add(offer);

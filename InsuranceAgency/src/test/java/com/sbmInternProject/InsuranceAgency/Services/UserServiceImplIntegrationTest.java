@@ -31,12 +31,11 @@ public class UserServiceImplIntegrationTest {
         public void whenAddUserCalledWithValidRequest_itShouldReturnValidUser(){
 
                 User user = User.builder()
-                            .id(1L)
                             .name("Sevval")
                             .surname("Ates")
                             .birthYear(2000)
                             .email("sevval@gmail.com")
-                            .identityNumber(39811122233L)
+                            .identityNumber(39811122230L)
                             .phoneNumber(5552221213L)
                             .build();
 
@@ -55,17 +54,15 @@ public class UserServiceImplIntegrationTest {
         public void whenGetUsersCalled_itShouldReturnValidUserList() {
 
                 User user1 = User.builder()
-                            .id(1L)
                             .name("Sevval")
                             .surname("Ates")
                             .birthYear(2000)
                             .email("sevval@gmail.com")
-                            .identityNumber(39811122233L)
+                            .identityNumber(39811122231L)
                             .phoneNumber(5552221213L)
                             .build();
 
                 User user2 = User.builder()
-                            .id(2L)
                             .name("Ada")
                             .surname("Deniz")
                             .birthYear(1990)
@@ -89,12 +86,11 @@ public class UserServiceImplIntegrationTest {
         public void whenDeleteUserCalledWithValidId_itShouldDeleteUser() {
 
                 User user = User.builder()
-                        .id(1L)
                         .name("Sevval")
                         .surname("Ates")
                         .birthYear(2000)
                         .email("sevval@gmail.com")
-                        .identityNumber(39811122233L)
+                        .identityNumber(39811122234L)
                         .phoneNumber(5552221213L)
                         .build();
 
@@ -112,12 +108,11 @@ public class UserServiceImplIntegrationTest {
         public void whenGetUserByIdCalledWithValidId_itShouldReturnValidUser() {
 
                 User user = User.builder()
-                            .id(1L)
                             .name("Sevval")
                             .surname("Ates")
                             .birthYear(2000)
                             .email("sevval@gmail.com")
-                            .identityNumber(39811122233L)
+                            .identityNumber(39811122235L)
                             .phoneNumber(5552221213L)
                             .build();
 
@@ -139,24 +134,23 @@ public class UserServiceImplIntegrationTest {
         public void whenUpdateUserCalledWithValidUser_itShouldReturn(){
 
                 User user = User.builder()
-                        .id(1L)
                         .name("Sevval")
                         .surname("Ates")
                         .birthYear(2000)
                         .email("sevval@gmail.com")
-                        .identityNumber(39811122233L)
+                        .identityNumber(39811122236L)
                         .phoneNumber(5552221213L)
                         .build();
 
                 userRepository.save(user);
 
                 User updateUser =User.builder()
-                                .id(1L)
+                                .id(user.getId())
                                 .name("Ada")
                                 .surname("Ates")
                                 .birthYear(2000)
                                 .email("sevval@gmail.com")
-                                .identityNumber(39811122233L)
+                                .identityNumber(39811122236L)
                                 .phoneNumber(5552221213L)
                                 .build();
 

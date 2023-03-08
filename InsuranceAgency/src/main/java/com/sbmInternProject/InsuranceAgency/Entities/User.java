@@ -54,6 +54,7 @@ public class User {
         @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
         private List<Apartment> apartments;
 
+        @ToString.Exclude
         @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
         private List<Travel> travels;
 

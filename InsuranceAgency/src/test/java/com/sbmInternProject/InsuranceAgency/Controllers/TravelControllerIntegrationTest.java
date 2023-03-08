@@ -4,20 +4,25 @@ import com.sbmInternProject.InsuranceAgency.Entities.Country;
 import com.sbmInternProject.InsuranceAgency.Entities.Offer;
 import com.sbmInternProject.InsuranceAgency.Entities.Travel;
 import com.sbmInternProject.InsuranceAgency.Entities.User;
-import com.sbmInternProject.InsuranceAgency.Services.CountryService;
-import com.sbmInternProject.InsuranceAgency.Services.OfferService;
-import com.sbmInternProject.InsuranceAgency.Services.TravelService;
-import com.sbmInternProject.InsuranceAgency.Services.UserService;
+import com.sbmInternProject.InsuranceAgency.Services.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,71 +31,92 @@ public class TravelControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private TravelService travelService;
 
-    @Mock
+    @MockBean
     private UserService userService;
 
-    @Mock
+    @MockBean
     private OfferService offerService;
 
-    @Mock
+    @MockBean
     private CountryService countryService;
 
     @Test
     public void testGetTravelInsurancePage() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/travelInsurance"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("travel_insurance"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("travel", "offer", "userlist", "countrylist"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("travel_insurance"))
+                .andExpect(model().attributeExists("travel", "offer", "userlist", "countrylist"));
+
     }
-/*
     @Test
     public void testHandleTravelInsuranceForm() throws Exception {
 
-        // Create a new user
-        User user = new User();
-        user.setId(1L);
-        user.setName("John");
-        user.setSurname("Doe");
-        user.setBirthYear(1990);
-        user.setEmail("john.doe@gmail.com");
-        user.setIdentityNumber(12345678901L);
-        user.setPhoneNumber(5555555555L);
+        User user = User.builder()
+                .id(1L)
+                .name("Sevval")
+                .surname("Ates")
+                .birthYear(2000)
+                .email("sevval@gmail.com")
+                .identityNumber(39811122233L)
+                .phoneNumber(5552221213L)
+                .cars(new ArrayList<>())
+                .apartments(new ArrayList<>())
+                .travels(new ArrayList<>())
+                .build();
+
+        //when(userService.addUser(user)).thenReturn(user);
         userService.addUser(user);
 
-        // Create a new travel object
-        Travel travel = new Travel();
-        travel.setId(1L);
-        travel.setStartDate(LocalDate.of(2023, 3, 1));
-        travel.setCountry(new Country(1L,"Turkey",5,null));
-        travel.setAverageDistance(500);
-        travel.setDayNumber(5);
-        travel.setUser(user);
+        Country country= Country.builder()
+                .id(1L)
+                .countryName("Turkey")
+                .countryValue(5)
+                .build();
 
-        // Create a new offer object
-        Offer offer = new Offer();
-        offer.setId(1L);
-        offer.setTravel(travel);
-        offer.setApproved(false);
-        offer.setOfferDate(LocalDate.of(2023, 3, 1));
-        offer.setStartDate(LocalDate.of(2023, 3, 1));
+        //when(countryService.addCountry(country)).thenReturn(country);
+        countryService.addCountry(country);
 
-        travel.addOfferToTravel(offer);
+        Travel travel = Travel.builder()
+                .id(1L)
+                .startDate(LocalDate.now().plusDays(1))
+                .averageDistance(100)
+                .country(country)
+                .user(user)
+                .dayNumber(5)
+                .offers(new ArrayList<>())
+                .build();
 
+        user.getTravels().add(travel);
+        //when(travelService.addTravel(travel)).thenReturn(travel);
+        travelService.addTravel(travel);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/travelInsurance")
+        Offer offer = Offer.builder()
+                .id(1L)
+                .startDate(LocalDate.now().plusDays(1))
+                .travel(travel)
+                .offerDate(LocalDate.now().plusDays(1))
+                .offerPrice(100000)
+                .approved(true)
+                .approvedDate(LocalDate.now().plusDays(1))
+                .build();
+
+        //when(offerService.addOffer(offer)).thenReturn(offer);
+        offerService.addOffer(offer);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/travelInsurance")
+                        //.contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .flashAttr("travel", travel)
                         .flashAttr("offer", offer))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("travel_insurance_offer"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("travel", "offer"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("travel_insurance_offer"))
+                .andExpect(model().attributeExists("travel", "offer"))
+                .andReturn();
 
-        // Cleanup
-       // travelService.deleteTravel(travel.getId());
-       // offerService.deleteOfferById(offer.getId());
-       // userService.deleteUserById(user.getId());
-    }*/
+        assertThat(result.getModelAndView().getModel().get("travel")).isEqualTo(travel);
+        assertThat(result.getModelAndView().getModel().get("offer")).isEqualTo(offer);
+    }
 }

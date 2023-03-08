@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "offers")
 public class Offer {
@@ -43,6 +44,7 @@ public class Offer {
     @JoinColumn(name = "apartment_id", referencedColumnName = "id")
     public Apartment apartment;
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "travel_id", referencedColumnName = "id")
     public Travel travel;
