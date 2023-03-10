@@ -25,7 +25,7 @@ public class UserControllerTest {
         @Mock
         private Model model;
 
-        @InjectMocks
+        @InjectMocks // is used to inject those mock objects into the class
         private UserController userController;
 
         private List<User> userList;
