@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -20,6 +21,7 @@ public class City {
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
+    @NotEmpty(message ="City name must not be empty.")
     @Column(name = "city_name", nullable = false)
     private String cityName;
 

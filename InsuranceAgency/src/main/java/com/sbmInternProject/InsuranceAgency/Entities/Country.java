@@ -3,6 +3,7 @@ package com.sbmInternProject.InsuranceAgency.Entities;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -19,6 +20,7 @@ public class Country {
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
+    @NotEmpty(message ="Country name must not be empty.")
     @Column(name = "country_name", nullable = false)
     private String countryName;
 
