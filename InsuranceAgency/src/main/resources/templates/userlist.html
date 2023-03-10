@@ -71,13 +71,13 @@
             <td th:text="${user.phoneNumber}" />
 
             <td>
-              <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
-              <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
+                <a th:href = "@{/userlist/edit/{id}(id=${user.id})}" class = "btn btn-primary">Update</a>
+                <a th:href="@{/userlist/{id}(id=${user.id})}" class="btn btn-danger ml-2">Delete</a>
             </td>
         </tr>
-      </tbody>
+        </tbody>
 
-  </table>
+    </table>
 </div>
 
 </body>
